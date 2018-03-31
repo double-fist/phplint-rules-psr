@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<ruleset name="phplint-rules-psr">
+    <!-- Use the VIISON ruleset installed by composer -->
+    <rule ref="./vendor/viison/style-guide/php/php-codesniffer-standard/VIISON" />
+</ruleset>
