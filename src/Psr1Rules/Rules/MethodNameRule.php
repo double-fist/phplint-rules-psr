@@ -7,7 +7,6 @@ use PhpLint\Ast\SourceContext;
 use PhpLint\Linter\LintResult;
 use PhpLint\Rules\AbstractRule;
 use PhpLint\Rules\RuleDescription;
-use PhpLint\Rules\RuleSeverity;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassMethod;
 
@@ -19,6 +18,8 @@ class MethodNameRule extends AbstractRule
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->setDescription(
             RuleDescription::forRuleWithIdentifier(self::RULE_IDENTIFIER)
                 ->explainedBy('Enforces that all method names must be declared in \'camelCase\'.')
@@ -78,7 +79,7 @@ class MethodNameRule extends AbstractRule
     /**
      * @inheritdoc
      */
-    public function validate(Node $node, SourceContext $context, $ruleConfig, LintResult $result)
+    public function validate(Node $node, SourceContext $context, LintResult $result)
     {
         $methodName = $node->name;
         if (!$methodName || mb_strlen($methodName->name) === 0) {
@@ -89,7 +90,6 @@ class MethodNameRule extends AbstractRule
         if (preg_match($methodNamePattern, $methodName->name) !== 1) {
             $result->reportViolation(
                 $this,
-                RuleSeverity::getRuleSeverity($ruleConfig),
                 self::MESSAGE_METHOD_NAME_NOT_IN_CAMEL_CASE,
                 $context->getSourceRangeOfNode($methodName)->getStart(),
                 $context

@@ -7,7 +7,6 @@ use PhpLint\Ast\SourceContext;
 use PhpLint\Linter\LintResult;
 use PhpLint\Rules\AbstractRule;
 use PhpLint\Rules\RuleDescription;
-use PhpLint\Rules\RuleSeverity;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassConst;
 
@@ -19,6 +18,8 @@ class ClassConstantNameRule extends AbstractRule
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->setDescription(
             RuleDescription::forRuleWithIdentifier(self::RULE_IDENTIFIER)
                 ->explainedBy('Enforces that all class constants must be declared in all upper case with underscore separators, e.g. \'ALL_UPPER_CASE\'.')
@@ -78,7 +79,7 @@ class ClassConstantNameRule extends AbstractRule
     /**
      * @inheritdoc
      */
-    public function validate(Node $node, SourceContext $context, $ruleConfig, LintResult $result)
+    public function validate(Node $node, SourceContext $context, LintResult $result)
     {
         $const = $node->consts[0];
         if (empty($const->name)) {
@@ -89,7 +90,6 @@ class ClassConstantNameRule extends AbstractRule
         if (preg_match($constNamePattern, $const->name->name) !== 1) {
             $result->reportViolation(
                 $this,
-                RuleSeverity::getRuleSeverity($ruleConfig),
                 self::MESSAGE_CLASS_CONSTANT_NAME_NOT_ALL_UPPER_CASE,
                 $context->getSourceRangeOfNode($const->name)->getStart(),
                 $context

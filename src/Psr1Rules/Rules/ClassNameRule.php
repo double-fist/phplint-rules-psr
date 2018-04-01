@@ -7,7 +7,6 @@ use PhpLint\Ast\SourceContext;
 use PhpLint\Linter\LintResult;
 use PhpLint\Rules\AbstractRule;
 use PhpLint\Rules\RuleDescription;
-use PhpLint\Rules\RuleSeverity;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 
@@ -19,6 +18,8 @@ class ClassNameRule extends AbstractRule
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->setDescription(
             RuleDescription::forRuleWithIdentifier(self::RULE_IDENTIFIER)
                 ->explainedBy('Enforces that all class names must be declared in \'StudlyCaps\' aka \'PascalCase\'.')
@@ -50,7 +51,7 @@ class ClassNameRule extends AbstractRule
     /**
      * @inheritdoc
      */
-    public function validate(Node $node, SourceContext $context, $ruleConfig, LintResult $result)
+    public function validate(Node $node, SourceContext $context, LintResult $result)
     {
         $className = $node->name;
         if (!$className || mb_strlen($className->name) === 0) {
@@ -61,7 +62,6 @@ class ClassNameRule extends AbstractRule
         if (preg_match($classNamePattern, $className->name) !== 1) {
             $result->reportViolation(
                 $this,
-                RuleSeverity::getRuleSeverity($ruleConfig),
                 self::MESSAGE_CLASS_NAME_NOT_IN_STUDLY_CAPS,
                 $context->getSourceRangeOfNode($className)->getStart(),
                 $context
