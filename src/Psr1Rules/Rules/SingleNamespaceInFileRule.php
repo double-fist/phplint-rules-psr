@@ -15,16 +15,14 @@ use PhpParser\Node\Stmt\Namespace_;
 class SingleNamespaceInFileRule extends AbstractRule
 {
     const RULE_IDENTIFIER = 'single-namespace-in-file';
-    const MESSAGE_ID_MULTIPLE_NAMESPACE_DECLARATIONS_IN_FILE = 'multipleNamespaceDeclarationsInFile';
+
+    const MESSAGE_MULTIPLE_NAMESPACE_DECLARATIONS_IN_FILE = 'Each file must declare at most one namespace.';
 
     public function __construct()
     {
         $this->setDescription(
             RuleDescription::forRuleWithIdentifier(self::RULE_IDENTIFIER)
                 ->explainedBy('Enforces that each file must contain at most one \'namespace\' declaration.')
-                ->usingMessages([
-                    self::MESSAGE_ID_MULTIPLE_NAMESPACE_DECLARATIONS_IN_FILE => 'Each file must declare at most one namespace.',
-                ])
                 ->rejectsExamples([
                     RuleDescription::createPhpCodeExample(
                         'namespace PhpLint\Rules;',
@@ -84,7 +82,7 @@ class SingleNamespaceInFileRule extends AbstractRule
             $result->reportViolation(
                 $this,
                 RuleSeverity::getRuleSeverity($ruleConfig),
-                self::MESSAGE_ID_MULTIPLE_NAMESPACE_DECLARATIONS_IN_FILE,
+                self::MESSAGE_MULTIPLE_NAMESPACE_DECLARATIONS_IN_FILE,
                 $context->getSourceRangeOfNode($node)->getStart(),
                 $context
             );

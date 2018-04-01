@@ -14,16 +14,14 @@ use PhpParser\Node\Stmt\Class_;
 class ClassNameRule extends AbstractRule
 {
     const RULE_IDENTIFIER = 'class-name';
-    const MESSAGE_ID_CLASS_NAME_NOT_IN_STUDLY_CAPS = 'classNameNotInStudlyCaps';
+
+    const MESSAGE_CLASS_NAME_NOT_IN_STUDLY_CAPS = 'Class names MUST be declared in StudlyCaps.';
 
     public function __construct()
     {
         $this->setDescription(
             RuleDescription::forRuleWithIdentifier(self::RULE_IDENTIFIER)
                 ->explainedBy('Enforces that all class names must be declared in \'StudlyCaps\' aka \'PascalCase\'.')
-                ->usingMessages([
-                    self::MESSAGE_ID_CLASS_NAME_NOT_IN_STUDLY_CAPS => 'Class names MUST be declared in StudlyCaps.',
-                ])
                 ->rejectsExamples([
                     RuleDescription::createPhpCodeExample('class acme {}'),
                     RuleDescription::createPhpCodeExample('class aCme {}'),
@@ -64,7 +62,7 @@ class ClassNameRule extends AbstractRule
             $result->reportViolation(
                 $this,
                 RuleSeverity::getRuleSeverity($ruleConfig),
-                self::MESSAGE_ID_CLASS_NAME_NOT_IN_STUDLY_CAPS,
+                self::MESSAGE_CLASS_NAME_NOT_IN_STUDLY_CAPS,
                 $context->getSourceRangeOfNode($className)->getStart(),
                 $context
             );

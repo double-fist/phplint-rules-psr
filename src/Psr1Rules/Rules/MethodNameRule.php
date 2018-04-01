@@ -14,16 +14,14 @@ use PhpParser\Node\Stmt\ClassMethod;
 class MethodNameRule extends AbstractRule
 {
     const RULE_IDENTIFIER = 'method-name';
-    const MESSAGE_ID_METHOD_NAME_NOT_IN_CAMEL_CASE = 'methodNameNotInCamelCase';
+
+    const MESSAGE_METHOD_NAME_NOT_IN_CAMEL_CASE = 'Method names must be declared in camelCase.';
 
     public function __construct()
     {
         $this->setDescription(
             RuleDescription::forRuleWithIdentifier(self::RULE_IDENTIFIER)
                 ->explainedBy('Enforces that all method names must be declared in \'camelCase\'.')
-                ->usingMessages([
-                    self::MESSAGE_ID_METHOD_NAME_NOT_IN_CAMEL_CASE => 'Method names must be declared in camelCase.',
-                ])
                 ->rejectsExamples([
                     RuleDescription::createPhpCodeExample(
                         'class AnyClass',
@@ -92,7 +90,7 @@ class MethodNameRule extends AbstractRule
             $result->reportViolation(
                 $this,
                 RuleSeverity::getRuleSeverity($ruleConfig),
-                self::MESSAGE_ID_METHOD_NAME_NOT_IN_CAMEL_CASE,
+                self::MESSAGE_METHOD_NAME_NOT_IN_CAMEL_CASE,
                 $context->getSourceRangeOfNode($methodName)->getStart(),
                 $context
             );

@@ -14,16 +14,14 @@ use PhpParser\Node\Stmt\ClassConst;
 class ClassConstantNameRule extends AbstractRule
 {
     const RULE_IDENTIFIER = 'class-constant-name';
-    const MESSAGE_ID_CLASS_CONSTANT_NAME_NOT_ALL_UPPER_CASE = 'classConstantNameNotAllUpperCase';
+
+    const MESSAGE_CLASS_CONSTANT_NAME_NOT_ALL_UPPER_CASE = 'Class constants must be declared in all upper case with underscore separators.';
 
     public function __construct()
     {
         $this->setDescription(
             RuleDescription::forRuleWithIdentifier(self::RULE_IDENTIFIER)
                 ->explainedBy('Enforces that all class constants must be declared in all upper case with underscore separators, e.g. \'ALL_UPPER_CASE\'.')
-                ->usingMessages([
-                    self::MESSAGE_ID_CLASS_CONSTANT_NAME_NOT_ALL_UPPER_CASE => 'Class constants must be declared in all upper case with underscore separators.',
-                ])
                 ->rejectsExamples([
                     RuleDescription::createPhpCodeExample(
                         'class AnyClass',
@@ -92,7 +90,7 @@ class ClassConstantNameRule extends AbstractRule
             $result->reportViolation(
                 $this,
                 RuleSeverity::getRuleSeverity($ruleConfig),
-                self::MESSAGE_ID_CLASS_CONSTANT_NAME_NOT_ALL_UPPER_CASE,
+                self::MESSAGE_CLASS_CONSTANT_NAME_NOT_ALL_UPPER_CASE,
                 $context->getSourceRangeOfNode($const->name)->getStart(),
                 $context
             );

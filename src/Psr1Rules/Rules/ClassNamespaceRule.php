@@ -16,16 +16,14 @@ use PhpParser\Node\Stmt\Namespace_;
 class ClassNamespaceRule extends AbstractRule
 {
     const RULE_IDENTIFIER = 'class-namespace';
-    const MESSAGE_ID_CLASS_NOT_NAMESPACED = 'classNotNamespaced';
+
+    const MESSAGE_CLASS_NOT_NAMESPACED = 'A class must be in a namespace of at least one level.';
 
     public function __construct()
     {
         $this->setDescription(
             RuleDescription::forRuleWithIdentifier(self::RULE_IDENTIFIER)
                 ->explainedBy('Enforces that all classes must be contained in a PSR-4 namespace.')
-                ->usingMessages([
-                    self::MESSAGE_ID_CLASS_NOT_NAMESPACED => 'A class must be in a namespace of at least one level.',
-                ])
                 ->rejectsExamples([
                     RuleDescription::createPhpCodeExample('class AnyClass {}'),
                 ])
@@ -58,7 +56,7 @@ class ClassNamespaceRule extends AbstractRule
             $result->reportViolation(
                 $this,
                 RuleSeverity::getRuleSeverity($ruleConfig),
-                self::MESSAGE_ID_CLASS_NOT_NAMESPACED,
+                self::MESSAGE_CLASS_NOT_NAMESPACED,
                 $context->getSourceRangeOfNode($node->name)->getStart(),
                 $context
             );
