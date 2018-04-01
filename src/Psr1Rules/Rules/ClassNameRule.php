@@ -63,8 +63,7 @@ class ClassNameRule extends AbstractRule
             $result->reportViolation(
                 $this,
                 self::MESSAGE_CLASS_NAME_NOT_IN_STUDLY_CAPS,
-                $context->getSourceRangeOfNode($className)->getStart(),
-                $context
+                $context->getSourceRangeOfNode($className)->getStart()
             );
         }
     }

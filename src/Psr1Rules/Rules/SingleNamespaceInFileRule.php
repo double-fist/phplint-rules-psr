@@ -83,8 +83,7 @@ class SingleNamespaceInFileRule extends AbstractRule
             $result->reportViolation(
                 $this,
                 self::MESSAGE_MULTIPLE_NAMESPACE_DECLARATIONS_IN_FILE,
-                $context->getSourceRangeOfNode($node)->getStart(),
-                $context
+                $context->getSourceRangeOfNode($node)->getStart()
             );
 
             break;

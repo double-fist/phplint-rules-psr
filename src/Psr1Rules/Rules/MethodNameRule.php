@@ -91,8 +91,7 @@ class MethodNameRule extends AbstractRule
             $result->reportViolation(
                 $this,
                 self::MESSAGE_METHOD_NAME_NOT_IN_CAMEL_CASE,
-                $context->getSourceRangeOfNode($methodName)->getStart(),
-                $context
+                $context->getSourceRangeOfNode($methodName)->getStart()
             );
         }
     }

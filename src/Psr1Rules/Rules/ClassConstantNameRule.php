@@ -91,8 +91,7 @@ class ClassConstantNameRule extends AbstractRule
             $result->reportViolation(
                 $this,
                 self::MESSAGE_CLASS_CONSTANT_NAME_NOT_ALL_UPPER_CASE,
-                $context->getSourceRangeOfNode($const->name)->getStart(),
-                $context
+                $context->getSourceRangeOfNode($const->name)->getStart()
             );
         }
     }

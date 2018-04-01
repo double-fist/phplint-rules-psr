@@ -57,8 +57,7 @@ class ClassNamespaceRule extends AbstractRule
             $result->reportViolation(
                 $this,
                 self::MESSAGE_CLASS_NOT_NAMESPACED,
-                $context->getSourceRangeOfNode($node->name)->getStart(),
-                $context
+                $context->getSourceRangeOfNode($node->name)->getStart()
             );
         }
     }

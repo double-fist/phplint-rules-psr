@@ -123,8 +123,7 @@ class SingleClassInFileRule extends AbstractRule
             $result->reportViolation(
                 $this,
                 self::MESSAGE_MULTIPLE_CLASS_DECLARATIONS_IN_FILE,
-                $context->getSourceRangeOfNode($node)->getStart(),
-                $context
+                $context->getSourceRangeOfNode($node)->getStart()
             );
         }
     }
