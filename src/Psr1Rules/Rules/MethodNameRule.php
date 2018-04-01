@@ -82,7 +82,7 @@ class MethodNameRule extends AbstractRule
     public function validate(Node $node, SourceContext $context, LintResult $result)
     {
         $methodName = $node->name;
-        if (!$methodName || mb_strlen($methodName->name) === 0) {
+        if ($node->isMagic() || !$methodName || mb_strlen($methodName->name) === 0) {
             return;
         }
 
