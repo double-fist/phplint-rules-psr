@@ -21,10 +21,10 @@ class AllRulesTest extends AbstractRuleTestCase
             new Rules\BlankLineAfterNamespaceRule(),
             new Rules\BlankLineAfterUseDeclarationsRule(),
             new Rules\ClassBracesRule(),
+            new Rules\ClassMethodBracesRule(),
             new Rules\ClassMethodModifiersRule(),
             new Rules\ClassPropertyVisibilityRule(),
             new Rules\ControlStructureKeywordSpacingRule(),
-            new Rules\FunctionBracesRule(),
             new Rules\NoVarClassPropertyRule(),
             new Rules\SingleClassPropertyPerStatementRule(),
         ]);

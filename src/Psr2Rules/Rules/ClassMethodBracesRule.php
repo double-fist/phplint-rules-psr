@@ -10,9 +10,9 @@ use PhpLint\Rules\RuleDescription;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassMethod;
 
-class FunctionBracesRule extends AbstractRule
+class ClassMethodBracesRule extends AbstractRule
 {
-    const RULE_IDENTIFIER = 'method-braces';
+    const RULE_IDENTIFIER = 'class-method-braces';
 
     const MESSAGE_CLOSING_BRACE_INDENTATION = 'The closing brace of a method must have the same indentation as the method delcaration.';
     const MESSAGE_CLOSING_BRACE_OWN_LINE = 'The closing brace of a method must be on a line of its own.';
