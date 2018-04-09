@@ -5,5 +5,6 @@
     defaultTestSuite="psr-rules">
     <testsuite name="psr-rules">
         <directory>./Psr1Rules/Test</directory>
+        <directory>./Psr2Rules/Test</directory>
     </testsuite>
 </phpunit>

@@ -7,6 +7,9 @@ use PhpLint\Plugin\DoubleFist\Psr1Rules\Rules;
 use PhpLint\TestHelpers\Rules\AbstractRuleTestCase;
 use PhpLint\TestHelpers\Rules\RuleAssertionsDataProvider;
 
+/**
+ * @group Psr1Rules
+ */
 class AllRulesTest extends AbstractRuleTestCase
 {
     /**

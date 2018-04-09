@@ -37,12 +37,14 @@
     },
     "autoload": {
         "psr-4": {
-            "PhpLint\\Plugin\\DoubleFist\\Psr1Rules\\": "src/Psr1Rules"
+            "PhpLint\\Plugin\\DoubleFist\\Psr1Rules\\": "src/Psr1Rules",
+            "PhpLint\\Plugin\\DoubleFist\\Psr2Rules\\": "src/Psr2Rules"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PhpLint\\Plugin\\DoubleFist\\Psr1Rules\\": "tests/Psr1Rules"
+            "PhpLint\\Plugin\\DoubleFist\\Psr1Rules\\": "tests/Psr1Rules",
+            "PhpLint\\Plugin\\DoubleFist\\Psr2Rules\\": "tests/Psr2Rules"
         }
     },
     "scripts": {
